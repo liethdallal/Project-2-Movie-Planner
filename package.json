@@ -1,7 +1,11 @@
 {
   "name": "project-2-movie-planner",
   "version": "1.0.0",
+<<<<<<< HEAD
   "description": "",
+=======
+  "description": "<!-- Hello from ryan :) -->",
+>>>>>>> c64b99e (finished installing dependencies. added .gitignore file)
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -10,6 +14,12 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+<<<<<<< HEAD
     "express": "^4.18.2"
+=======
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
+    "mongoose": "^7.6.2"
+>>>>>>> c64b99e (finished installing dependencies. added .gitignore file)
   }
 }
