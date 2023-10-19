@@ -8,20 +8,20 @@ mongoose.connect(process.env.MONGO_URI, {
     useUnifiedTopology: true
   })
                   
-// console.log(`MONGO_URI: ${process.env.MONGO_URI}`);         
-// mongoose.connection.on('connected', () => {
-// console.log(`Connected to database ${connectionString}`);
-// })
+     
+mongoose.connection.on('connected', () => {
+console.log(`Connected to database`);
+})
                   
                   
-// mongoose.connection.on('disconnected', () => {
-// console.log(`Disconnected from database ${connectionString}`);
-// })
+mongoose.connection.on('disconnected', () => {
+console.log(`Disconnected from database`);
+})
                   
                   
-// mongoose.connection.on('error', (error) => {
-// console.log(`Error connecting to ${connectionString}`);
-// console.error(error);
-// })
+mongoose.connection.on('error', (error) => {
+console.log(`Error connecting to`);
+console.error(error);
+})
                   
 module.exports = mongoose

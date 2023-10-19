@@ -4,10 +4,13 @@ const app = express()
 // const { Movie } = require("./models/movieModel")
 
 
-
+//middleware
 const movieRouter = require("./controllers/moviecontroller")
 app.use("/movies", movieRouter)
+const userRouter = require("./controllers/usercontroller")
+app.use("/users", userRouter)
 
+//views
 app.use(express.static(__dirname + '/views'));
 //We are looking in to the entire folder views to be able to grab the css along with our html
 
