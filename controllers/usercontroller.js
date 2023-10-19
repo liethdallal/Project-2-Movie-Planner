@@ -1,5 +1,5 @@
 const express = require("express");
-
+const router = express.Router()
 
 
 // Import User Model
@@ -73,6 +73,8 @@ router.put("/", async (req, res, next) => {
     next(error)
   }
 })
+
+module.exports = router
 
 
 
