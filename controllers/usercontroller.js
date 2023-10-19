@@ -1,6 +1,5 @@
 const express = require("express");
 
-// define router
 const router = express.Router()
 
 // Import User Model
