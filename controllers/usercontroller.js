@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router()
 
 
+
 // Import User Model
 const User = require("../models/userModel");
 // get
@@ -73,6 +74,7 @@ router.put("/", async (req, res, next) => {
     next(error)
   }
 })
+
 
 module.exports = router
 

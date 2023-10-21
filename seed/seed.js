@@ -1,10 +1,11 @@
 const Movie = require("../models/movieModel")
 const movieData = require("../seed/movies.json")
+const User = require("../models/userModel")
+const userData = require("../seed/user.json")
 
-
-Movie.deleteMany({})
+User.deleteMany({})
     .then(() => {
-        return Movie.insertMany(movieData)
+        return User.insertMany(userData)
     })
     .then(console.log)
     .catch(console.error)
