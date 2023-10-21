@@ -5,6 +5,7 @@ const app = express()
 
 
 //middleware
+app.use(express.json());
 const movieRouter = require("./controllers/moviecontroller")
 app.use("/movies", movieRouter)
 const userRouter = require("./controllers/usercontroller")

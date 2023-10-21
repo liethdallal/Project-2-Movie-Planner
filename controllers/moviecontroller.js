@@ -7,7 +7,8 @@ const Movie = require("../models/movieModel")
 router.get("/", async (req, res, next) => {
     try {
         const movies = await Movie.find()
-        res.render("/movies", { movies })
+        // res.render("/movies", { movies })
+        res.json(movies)
     } catch (error) {
         next(error)
     }
@@ -47,43 +48,46 @@ router.get("/update", async(req, res, next) => {
 })
 
 //post new movies
-router.post("/", async(req, res, next) => {
+router.post("/newmovie", async(req, res, next) => {
     try {
         const createdMovie = await Movie.create({
             title: req.body.title,
-            img: req.body.image,
+            img: req.body.img,
             watched: req.body.watched,
             rating: req.body.rating
         })
-        res.render("/newmovie", { createdMovie })
+        // res.render("/newmovie", { createdMovie })
+        res.json(createdMovie)
     } catch (error) {
         next(error)
     }
 })
 
 //update movie by title
-router.put("/", async(req, res, next) => {
+router.put("/:title", async(req, res, next) => {
     try {
         const filter = {
-            _title: req.params.title
+            "title": req.params.title
         }
         const data = {
-            title: req.body.title,
+            title: req.body.title, //THIS line of code is where the error is spitting
             img: req.body.img,
             watched: req.body.watched,
             rating: req.body.rating
         }
         const updatedMovie = await Movie.findOneAndUpdate(filter, data, { new: true })
-        res.redirect("/:id", {updatedMovie})
+        // res.redirect("/:title", {updatedMovie})
+        res.json(updatedMovie)
     } catch (error) {
         next(error)
     }
 })
 
 //delete movies
-router.delete("/", async(req, res, next) => {
+router.delete("/:title", async(req, res, next) => {
     try {
-        await Movie.FindOneAndDelete({ title: title })
+        const title = req.params.title
+        await Movie.findOneAndDelete({ title: title })
         res.redirect("/movies")
     } catch (error) {
         next(error)

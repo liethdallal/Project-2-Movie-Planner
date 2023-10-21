@@ -1,12 +1,12 @@
-const mongoose = require(`mongoose`)
+const mongoose = require(`../db/connection`)
 
 const UserSchema = new mongoose.Schema({
-    userName: {type: String, require: true, unique: true},
-    email: {type: String, require: true, unique: true}, 
-    password: {type: String, require: true},
+    userName: { type: String, required: true, unique: true },
+    email: { type: String, required: true, unique: true },
+    password: { type: String, required: true },
     unwatchedMovies: [],
     watchedMovies: []
-})
+});
 
 const User = mongoose.model("User", UserSchema)
 

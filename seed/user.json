@@ -1,23 +1,23 @@
 [
     {
-        "username": "rsammer07",
+        "userName": "rsammer07",
         "email": "ryan.sammer07@gmail.com",
         "password": "abc123",
         "unwatchedMovies": [],
         "watchedMovies": []
+    },
+    {
+        "userName": "quadspider457",
+        "email": "kojumango@gmail.com",
+        "password": "Hanshotfirst",
+        "unwatchedMovies": [],
+        "watchedMovies": []
+    },
+    {
+        "userName": "elyonspidey",
+        "email": "bond@gmail.com",
+        "password": "sexyfire",
+        "unwatchedMovies": [],
+        "watchedMovies": []
     }
-    // {
-    //     "username": "quadspider457",
-    //     "email": "kojumango@gmail.com",
-    //     "password": "Hanshotfirst",
-    //     "unwatchedMovies": [],
-    //     "watchedMovies": []
-    // },
-    // {
-    //     "username": "elyonspidey",
-    //     "email": "bond@gmail.com",
-    //     "password": "sexyfire",
-    //     "unwatchedMovies": [],
-    //     "watchedMovies": []
-    // }
 ]
