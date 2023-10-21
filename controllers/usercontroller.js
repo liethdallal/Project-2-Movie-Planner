@@ -1,9 +1,7 @@
 const express = require("express");
-<<<<<<< HEAD
-const router = express.Router()
-=======
 
->>>>>>> e19fcb5 (export router added)
+// define router
+const router = express.Router()
 
 // Import User Model
 const User = require("../models/userModel");
@@ -78,7 +76,4 @@ router.put("/", async (req, res, next) => {
 })
 
 
-<<<<<<< HEAD
 module.exports = router
-=======
->>>>>>> e19fcb5 (export router added)
