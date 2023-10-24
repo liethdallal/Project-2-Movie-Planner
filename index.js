@@ -36,6 +36,10 @@ app.get('/error', (req, res) => {
     res.render('error.ejs')
 })
 
+app.get('/movie', (req, res) => {
+    res.render('movie.ejs')
+})
+
 app.listen(`8000`, () => {
     console.log(`Listening!`)
 })
