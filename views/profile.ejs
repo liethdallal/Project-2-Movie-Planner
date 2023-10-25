@@ -1,5 +1,8 @@
+<% if (user) { %>
 <h1><%= user.userName %></h1>
-
+<% } else { %>
+    <p>Movie not found</p>
+<% } %>
 <h2>Unwatched Movies</h2>
     <ul>
         <% user.watchedMovies.forEach(movie => { %>

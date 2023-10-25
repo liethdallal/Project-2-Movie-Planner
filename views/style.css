@@ -83,3 +83,11 @@ font-size: 50px;
   #search-form { 
     margin-left: 40px;
   }
+
+  ul {
+    list-style: none;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
