@@ -1,13 +1,16 @@
 const express = require("express")
 const router = express.Router()
-
+const { displayAllMovies } = require("../controllers/indexcontroller")
 
 const Movie = require("../models/movieModel")
 //get all movies
+
+// router.get("/", displayAllMovies)
+
 router.get("/", async (req, res, next) => {
     try {
         const movies = await Movie.find()
-        res.render("/movies", { movies })
+        main
         res.json(movies)
     } catch (error) {
         next(error)
@@ -20,8 +23,8 @@ router.get("/:title", async (req, res, next) => {
         const movie = await Movie.find({ title: title });
 
         if (movie.length > 0) {
-            // res.json(movie);
-            res.render("movie", {movie: movie[0]})
+
+            res.json(movie);
         } else {
             res.status(404).json({ message: "Movie not found" });
         }
