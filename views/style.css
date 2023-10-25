@@ -1,7 +1,15 @@
 body {
-    background-color: rgba(19, 19, 19, 0.87);
+    background-color: rgba(19, 19, 19, 0.95);
     color: rgb(138, 0, 252);
 }
+button{
+    cursor: pointer;
+  }
+  footer{
+    margin-top: 100px;
+    font-size: 20px;
+    text-align: center;
+  }
 #profile-link{
     display: none;
     font-size: 20px;
@@ -64,27 +72,14 @@ font-size: 50px;
     width: 80px;
     height: 80px;
 }
-:root {
-    /* Light mode variables */
-    --container-background: #FDF8F7;
-    --para-light-text: #333333;
-    --anchor-light-text: #FAEEEB;
-    --anchor-light-bg: #A04229;
-    /* Dark theme variables */
-    --container-dark-text: #FFFFF;
-    --container-dark-background: darkgrey;
-    --para-dark-text: #FFFFFF;
-    --anchor-dark-text: darkgrey;
-    --anchor-dark-bg: grey;
+  #homepage-intro{
+    text-align: center;
+    margin-top: 200px;
   }
-/* @media screen and (prefers-color-scheme: dark) {
-    body {
-      color: #fff;
-    }
+  #homepagelinks {
+    display: flex;
+    gap: 25px;
   }
-
-  @media screen and (prefers-color-scheme: light) {
-    body {
-      color: #000;
-    }
-  } */
+  #search-form { 
+    margin-left: 40px;
+  }
