@@ -7,8 +7,11 @@
         "watchedMovies": []
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 42c83e4 (fixed user.json data)
+=======
+>>>>>>> d351061 (having movies aligned)
     },
     {
         "username": "quadspider457",
@@ -23,6 +26,7 @@
         "password": "Hanshotfirst",
         "unwatchedMovies": [],
         "watchedMovies": []
+<<<<<<< HEAD
     },
     {
         "username": "elyonspidey",
@@ -35,5 +39,23 @@
 >>>>>>> b47d31e (finished movie seeding. going to work on user seeding on saturday)
 =======
 >>>>>>> 42c83e4 (fixed user.json data)
+=======
+=======
+>>>>>>> bbac9ff (finished movie seeding. going to work on user seeding on saturday)
+>>>>>>> d351061 (having movies aligned)
     }
+    // {
+    //     "username": "quadspider457",
+    //     "email": "kojumango@gmail.com",
+    //     "password": "Hanshotfirst",
+    //     "unwatchedMovies": [],
+    //     "watchedMovies": []
+    // },
+    // {
+    //     "username": "elyonspidey",
+    //     "email": "bond@gmail.com",
+    //     "password": "sexyfire",
+    //     "unwatchedMovies": [],
+    //     "watchedMovies": []
+    // }
 ]
