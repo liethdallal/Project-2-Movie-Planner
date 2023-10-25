@@ -21,9 +21,21 @@
         "watchedMovies": []
     },
     {
+        "userName": "elyonspidey",
+        "email": "kojumango@gmail.com",
+        "password": "Hanshotfirst",
+=======
         "username": "quadspider457",
         "email": "kojumango@gmail.com",
         "password": "Hanshotfirst",
+        "unwatchedMovies": [],
+        "watchedMovies": []
+    },
+    {
+        "username": "elyonspidey",
+        "email": "bond@gmail.com",
+        "password": "sexyfire",
+>>>>>>> 57dee77 (fixed user.json data, updated)
         "unwatchedMovies": [],
         "watchedMovies": []
 <<<<<<< HEAD
