@@ -11,7 +11,10 @@ router.get("/", async (req, res, next) => {
     try {
         const movies = await Movie.find()
         // res.render("/allMovies", { movies })
+<<<<<<< HEAD
         res.render("/movies", { movies })
+=======
+>>>>>>> 1f90cb2 (resolved)
         res.json(movies)
     } catch (error) {
         next(error)
