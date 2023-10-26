@@ -1,3 +1,5 @@
+const Movie = require("../models/movieModel")
+const movieData = require("../seed/movies.json")
 const User = require("../models/userModel")
 const userData = require("../seed/user.json")
 
