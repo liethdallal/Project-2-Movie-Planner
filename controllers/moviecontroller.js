@@ -9,19 +9,9 @@ const Movie = require("../models/movieModel")
 
 router.get("/", async (req, res, next) => {
     try {
-        let movies
-        if(req.query.title){
-        console.log("hello");
-        const title = req.query.title
-            movies = await Movie.find({ title: {$regex: title, $options: 'i'}})
-        } else{
-            movies = await Movie.find()
-        }
-        // console.log(movies);
-        res.render("movies", { movies })
-
-        // res.render("movies", { movies })
-        // res.json(movies)
+        const movies = await Movie.find()
+        res.render("/movies", { movies })
+        res.json(movies)
     } catch (error) {
         next(error)
     }
@@ -33,7 +23,8 @@ router.get("/:title", async (req, res, next) => {
         const movie = await Movie.find({ title: title });
 
         if (movie.length > 0) {
-            res.json(movie);
+            // res.json(movie);
+            res.render("movie", {movie: movie[0]})
         } else {
             res.status(404).json({ message: "Movie not found" });
         }
