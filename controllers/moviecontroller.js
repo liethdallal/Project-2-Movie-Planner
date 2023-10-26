@@ -10,59 +10,49 @@ const Movie = require("../models/movieModel")
 router.get("/", async (req, res, next) => {
     try {
         const movies = await Movie.find()
-<<<<<<< HEAD
-        main
         res.json(movies)
-=======
         res.render("movies", { movies })
         // res.json(movies)
->>>>>>> 4ff8b65 (all of todays changes from Joel Lieth and Ryan)
     } catch (error) {
         next(error)
     }
 })
+
+//send new movie form
+router.get("/newMovie", async(req, res, next) => {
+    try {
+        res.render("newMovieForm")
+    } catch (error) {
+        next(error)
+    }
+})
+
+
+//send update movie form
+router.get("/update", async(req, res, next) => {
+    try {
+        res.render("movies")
+    } catch (error) {
+        next(error)
+    }
+})
+
+
 //get movies by title "movie", { movie: movie[0] }
 router.get("/:title", async (req, res, next) => {
     try {
         const title = req.params.title;
-<<<<<<< HEAD
-        const movie = await Movie.find({ title: title });
-
-        if (movie.length > 0) {
-
-            res.json(movie);
-        } else {
-            res.status(404).json({ message: "Movie not found" });
-        }
-=======
         const movie = await Movie.findOne({ title: title });
-        res.render("movie", { movie })
->>>>>>> 4ff8b65 (all of todays changes from Joel Lieth and Ryan)
+        res.render("example", { movie })
     } catch (error) {
         next(error);
     }
 });
 
-//send new movie form
-router.get("/newMovie", async(req, res, next) => {
-    try {
-        res.render("/newmovie")
-    } catch (error) {
-        next(error)
-    }
-})
 
-//send update movie form
-router.get("/update", async(req, res, next) => {
-    try {
-        res.render("/updatemovie")
-    } catch (error) {
-        next(error)
-    }
-})
 
 //post new movies
-router.post("/", async(req, res, next) => {
+router.post("/newMovie", async(req, res, next) => {
     try {
         const createdMovie = await Movie.create({
             title: req.body.title,
@@ -70,7 +60,7 @@ router.post("/", async(req, res, next) => {
             watched: req.body.watched,
             rating: req.body.rating
         })
-        res.render("movie", { createdMovie })
+        res.redirect("/movies")
         // res.json(createdMovie)
     } catch (error) {
         next(error)
