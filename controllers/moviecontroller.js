@@ -9,14 +9,34 @@ const Movie = require("../models/movieModel")
 
 router.get("/", async (req, res, next) => {
     try {
-        const movies = await Movie.find()
-        res.json(movies)
+        let movies
+        if(req.query.title){
+        console.log("hello");
+        const title = req.query.title
+            movies = await Movie.find({ title: {$regex: title, $options: 'i'}})
+        } else{
+            movies = await Movie.find()
+        }
+        // console.log(movies);
         res.render("movies", { movies })
+
+        // res.render("movies", { movies })
         // res.json(movies)
     } catch (error) {
         next(error)
     }
 })
+//get movies by title "movie", { movie: movie[0] }
+router.get("/:id", async (req, res, next) => {
+    try {
+        console.log(req)
+        const title = req.params.title;
+        const movie = await Movie.findOne({ title: title });
+        res.render("movie", { movie })
+    } catch (error) {
+        next(error);
+    }
+});
 
 //send new movie form
 router.get("/newMovie", async(req, res, next) => {
