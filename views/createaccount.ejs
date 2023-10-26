@@ -1,31 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./style.css" type="text/css">
-    <title>Register</title>
-</head>
-<body>
-    <a href="/"><img id="logo" src="./img/logo.png"></a>
-    <h1 id="login">Create Your Account</h1>
-    <div id="formbox">
-        <form action="/createaccount" method="Post">
-            <label class="loginlabel" for="email">Email:</label>
-            <br>
-            <input class="loginlabel" type="text" name="email" required>
-            <br>
-            <label class="loginlabel" for="username">Username:</label>
-            <br>
-            <input class="loginlabel" type="text" name="username" required>
-            <br>
-            <label class="loginlabel" for="password">Password:</label>
-            <br>
-            <input class="loginlabel" type="password" name="password" required>
-            <br>
-            <button type="submit">Sign Up!</button>
-        </form>
-    </div>
+<h1 id="login">Create Your Account</h1>
+<div id="formbox">
+    <form action="/users" method="POST">
+        <label class="loginlabel" for="email">Email:</label>
+        <br>
+        <input class="loginlabel" type="text" name="email" required>
+        <br>
+        <label class="loginlabel" for="username">Username:</label>
+        <br>
+        <input class="loginlabel" type="text" name="userName" required>
+        <br>
+        <label class="loginlabel" for="password">Password:</label>
+        <br>
+        <input class="loginlabel" type="password" name="password" required>
+        <br>
+        <button type="submit">Sign Up!</button>
+    </form>
+</div>
     <div id="registerdivbox">
         <button id="registerlinkbutton"><a id="registerlink" href="/login">Already have an account? <br> Log in Here!</a></button>
     </div>

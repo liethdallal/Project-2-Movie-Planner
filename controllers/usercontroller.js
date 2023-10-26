@@ -5,15 +5,11 @@ const router = express.Router()
 const User = require("../models/userModel");
 // get
 router.get("/:userName", async (req, res, next) => {
+  const userName = req.params.userName
      try {
-      const userName = req.params.userName
-      const user = await User.find({ userName: userName})
-
-      if (user.length > 0) {
-        res.json(user)
-      } else {
-        res.status(404).json({ message: "User not found" })
-      }
+      const user = await User.findOne({ userName: userName})
+      res.render("profile", { user: user })
+      // res.json(user)
      } catch (error) {
       next(error)
      }
@@ -45,29 +41,19 @@ router.get("/newUser", async (req, res, next) => {
 })
 
 // Register user 
-router.post("/createaccount", async (req, res, next) => {
-  const { userName } = req.userName
+router.post("/", async (req, res, next) => {
   try {
-    const newUser = new User({ userName })
-    await newUser.save();
-    console.log("posted new user")
-    res.redirect ("/newUser")
+    const createdUser = await User.create({
+        userName: req.body.userName,
+        email: req.body.email,
+        password: req.body.password,
+        unwatchedMovies: req.body.unwatchedMovies,
+        watchedMovies: req.body.watchedMovies
+    })
+    res.render("profile", { "user": createdUser })
   } catch (error) {
     next(error)
   }
-  // try {
-  //   const createdUser = await User.create({
-  //       userName: req.body.userName,
-  //       email: req.body.email,
-  //       password: req.body.password,
-  //       unwatchedMovies: req.body.unwatchedMovies,
-  //       watchedMovies: req.body.watchedMovies
-  //   })
-  //   res.render("/newUser", { createdUser })
-  //   res.json(createdUser)
-  // } catch (error) {
-  //   next(error)
-  // }
 })
 
 // Update user
@@ -84,8 +70,7 @@ router.put("/:userName", async (req, res, next) => {
       watchedMovies: req.body.watchedMovies
     }
     const updatedUser = await User.findOneAndUpdate(filter, data, {new: true})
-    // res.redirect("/updatedUser", {updatedUser})
-    res.json(updatedUser)
+    res.redirect("/profile", {updatedUser})
   } catch (error) {
     next(error)
   }

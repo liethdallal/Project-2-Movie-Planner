@@ -1,12 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1> List of all movies </h1>
-
+<h1> list of all movies </h1>
+<ul>
+    <% movies.forEach(movie => { %>
+        <li>
+            <img src="<%= movie.img %>" alt="<%= movie.title %> Poster" width="200">
+            <h2><%= movie.title %></h2>
+            <button id="add">Add to my list!</button>
+            <button id="watched">Watched?</button>
+        </li>
+    <% }); %>
+</ul>    
+<h3>Don't see the movie you're looking for? Add it!</h3>
+<button id="newMovie"><a id="newmovieLink" href="/movies/new">ADD</a></button>
 </body>
 </html>
+

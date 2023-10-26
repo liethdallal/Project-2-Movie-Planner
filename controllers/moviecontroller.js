@@ -1,6 +1,6 @@
 const express = require("express")
 const router = express.Router()
-const { displayAllMovies } = require("../controllers/indexcontroller")
+// const { displayAllMovies } = require("../controllers/indexcontroller")
 
 const Movie = require("../models/movieModel")
 //get all movies
@@ -10,8 +10,13 @@ const Movie = require("../models/movieModel")
 router.get("/", async (req, res, next) => {
     try {
         const movies = await Movie.find()
+<<<<<<< HEAD
         main
         res.json(movies)
+=======
+        res.render("movies", { movies })
+        // res.json(movies)
+>>>>>>> 4ff8b65 (all of todays changes from Joel Lieth and Ryan)
     } catch (error) {
         next(error)
     }
@@ -20,6 +25,7 @@ router.get("/", async (req, res, next) => {
 router.get("/:title", async (req, res, next) => {
     try {
         const title = req.params.title;
+<<<<<<< HEAD
         const movie = await Movie.find({ title: title });
 
         if (movie.length > 0) {
@@ -28,6 +34,10 @@ router.get("/:title", async (req, res, next) => {
         } else {
             res.status(404).json({ message: "Movie not found" });
         }
+=======
+        const movie = await Movie.findOne({ title: title });
+        res.render("movie", { movie })
+>>>>>>> 4ff8b65 (all of todays changes from Joel Lieth and Ryan)
     } catch (error) {
         next(error);
     }
@@ -52,7 +62,7 @@ router.get("/update", async(req, res, next) => {
 })
 
 //post new movies
-router.post("/newmovie", async(req, res, next) => {
+router.post("/", async(req, res, next) => {
     try {
         const createdMovie = await Movie.create({
             title: req.body.title,
@@ -60,8 +70,8 @@ router.post("/newmovie", async(req, res, next) => {
             watched: req.body.watched,
             rating: req.body.rating
         })
-        // res.render("/newmovie", { createdMovie })
-        res.json(createdMovie)
+        res.render("movie", { createdMovie })
+        // res.json(createdMovie)
     } catch (error) {
         next(error)
     }

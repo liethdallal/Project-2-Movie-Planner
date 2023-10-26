@@ -1,12 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./style.css" type="text/css">
-    <title>Profile</title>
-</head>
-<body>
-    <h1>Welcome to Movie Planner!</h1>
+<h1><%= user.userName %></h1>
+
+<h2>Unwatched Movies</h2>
+    <ul>
+        <% user.watchedMovies.forEach(movie => { %>
+            <li><%= movie.img %></li>
+            <li><%= movie.title %></li>
+            <li><%= movie.rating %></li>
+            <button id="watched">Watched?</button>
+        <% }); %>
+    </ul>
+
+
+<h2>Watched Movies</h2>
+    <ul>
+        <% user.watchedMovies.forEach(movie => { %>
+            <li><%= movie.img %></li>
+            <li><%= movie.title %></li>
+            <li><%= movie.rating %></li>>
+        <% }); %>
+    </ul>
 </body>
 </html>

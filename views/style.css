@@ -1,3 +1,7 @@
+body {
+    background-color: rgba(19, 19, 19, 0.87);
+    color: rgb(138, 0, 252);
+}
 #profile-link{
     display: none;
     font-size: 20px;
@@ -11,6 +15,7 @@
     text-align: right;
     margin-top: 90px;
     margin-right: 90px;
+    cursor: pointer;
 }
 #allmovies{
     text-align: center;
@@ -49,9 +54,37 @@ font-size: 50px;
    font-size:50px;
 }
 .loginsubmit {
-    margin-left: 180px;
+    margin: auto;
+    border: none;
+    border-radius: 10px;
+    justify-content: center;
+    align-items: center;
 }
 #logo {
     width: 80px;
     height: 80px;
 }
+:root {
+    /* Light mode variables */
+    --container-background: #FDF8F7;
+    --para-light-text: #333333;
+    --anchor-light-text: #FAEEEB;
+    --anchor-light-bg: #A04229;
+    /* Dark theme variables */
+    --container-dark-text: #FFFFF;
+    --container-dark-background: darkgrey;
+    --para-dark-text: #FFFFFF;
+    --anchor-dark-text: darkgrey;
+    --anchor-dark-bg: grey;
+  }
+/* @media screen and (prefers-color-scheme: dark) {
+    body {
+      color: #fff;
+    }
+  }
+
+  @media screen and (prefers-color-scheme: light) {
+    body {
+      color: #000;
+    }
+  } */

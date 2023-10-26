@@ -1,11 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <%= movie.img %>
+<h2><%= movie.title %></h2>
+    <img src="<%= movie.img %>" alt="<%= movie.title %> Poster" width="200">
+    <button id="add">Add to my list!</button>
+    <button id="watched">Watched?</button>
 </body>
 </html>
