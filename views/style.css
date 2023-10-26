@@ -114,3 +114,42 @@ ul {
   font-size: 30px;
   text-align: center;
 }
+
+.new-movie {
+  text-align: center;
+  font-size: xx-large;
+}
+
+.newMovie {
+  margin: auto;
+    border: none;
+    border-radius: 10px;
+    justify-content: center;
+    align-items: center;
+    font-size: 50px;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.newMovieForm {
+    text-align: center; /* Center-align content within the form container */
+}
+
+.newMovieForm input {
+    display: block; /* Make input fields block-level elements */
+    margin: 10px; /* Add some vertical spacing between the inputs */
+    width: 100%; /* Make the input fields take the full width of the container */
+}
+
+.newMovieForm button {
+    display: block;
+    margin: 10px;
+}
+
+#add-movie {
+  text-align:center;
+}
