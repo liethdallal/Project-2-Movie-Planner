@@ -6,7 +6,6 @@
         "unwatchedMovies": [],
         "watchedMovies": []
 <<<<<<< HEAD
-=======
     },
     {
         "username": "quadspider457",
@@ -28,7 +27,8 @@
         "password": "sexyfire",
         "unwatchedMovies": [],
         "watchedMovies": []
->>>>>>> 57dee77 (fixed user.json data, updated)
+=======
+>>>>>>> b47d31e (finished movie seeding. going to work on user seeding on saturday)
     }
     // {
     //     "username": "quadspider457",

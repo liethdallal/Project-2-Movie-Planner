@@ -23,8 +23,10 @@ router.get("/:title", async (req, res, next) => {
         const movie = await Movie.find({ title: title });
 
         if (movie.length > 0) {
+
             // res.json(movie);
             res.render("movie", {movie: movie[0]})
+            res.json(movie);
         } else {
             res.status(404).json({ message: "Movie not found" });
         }
