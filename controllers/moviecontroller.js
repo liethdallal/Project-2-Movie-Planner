@@ -10,6 +10,7 @@ const Movie = require("../models/movieModel")
 router.get("/", async (req, res, next) => {
     try {
         const movies = await Movie.find()
+        // res.render("/allMovies", { movies })
         res.render("/movies", { movies })
         res.json(movies)
     } catch (error) {
@@ -23,9 +24,6 @@ router.get("/:title", async (req, res, next) => {
         const movie = await Movie.find({ title: title });
 
         if (movie.length > 0) {
-
-            // res.json(movie);
-            res.render("movie", {movie: movie[0]})
             res.json(movie);
         } else {
             res.status(404).json({ message: "Movie not found" });
