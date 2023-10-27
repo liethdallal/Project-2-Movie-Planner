@@ -2,7 +2,7 @@
     <% movies.forEach(movie => { %>
         <div class="movie-card">
             <div class="movie-content">
-                <a href="/movies/<%= movie.title %>"> <!-- Wrap the image with an anchor tag -->
+                <a href="/movies/<%= movie.title %>">
                     <img src="<%= movie.img %>" alt="<%= movie.title %> Poster" width="200">
                 </a>
                 <h2 class="movie-title"><%= movie.title %></h2>
@@ -14,4 +14,9 @@
         </div>
     <% }); %>
 </div>
-
+<div class="new-movie">
+    <h3>Don't see the movie you're looking for? Add it!</h3>
+    <button id="newMovie"><a id="newmovieLink" href="/movies/newMovie">ADD</a></button>
+</div>
+</body>
+</html>
