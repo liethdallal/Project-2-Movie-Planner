@@ -1,26 +1,24 @@
+<div id="homepagelinks">
+    <a href="/movies"><button>Click here To see All Movies!!</button></a>
+    </div>
 <% if (user) { %>
-<h1><%= user.userName %></h1>
-<% } else { %>
-    <p>Movie not found</p>
-<% } %>
-<h2>Unwatched Movies</h2>
-    <ul>
-        <% user.watchedMovies.forEach(movie => { %>
-            <li><%= movie.img %></li>
-            <li><%= movie.title %></li>
-            <li><%= movie.rating %></li>
-            <button id="watched">Watched?</button>
-        <% }); %>
-    </ul>
+    <h1>Welcome <%= user.name %></h1>
+    <h2>Unwatched Movies:</h2>
+    <h2>Watched Movies:</h2>
+    <% } else { %>
+        <p>Please sign in to save your data</p>
+            <h1 id="homepage-intro">Welcome to our Movie Watchlist application! 
+                <br>
+                We Designed this application to allow users to be able to add movies they enjoy to their watched lists and give them reviews!
+                <br>
+                We also deigned it for the user to add movies not included in the list and movies they want to watch to their to watch list!
+                <br>
+                Hope You guys enjoy! 
+            </h1>
+    <% } %>
+  
 
 
-<h2>Watched Movies</h2>
-    <ul>
-        <% user.watchedMovies.forEach(movie => { %>
-            <li><%= movie.img %></li>
-            <li><%= movie.title %></li>
-            <li><%= movie.rating %></li>>
-        <% }); %>
-    </ul>
+
 </body>
 </html>

@@ -1,13 +1,10 @@
-<form id="search-form" action="/movies">
-    <input id="searchbar" type="text" name="title" placeholder="Search...">
-    <button type="submit">Search</button>
-</form>
-<h1 class="allMoviesList"> List of all movies </h1>
 <div class="movies-grid">
     <% movies.forEach(movie => { %>
         <div class="movie-card">
             <div class="movie-content">
-                <img src="<%= movie.img %>" alt="<%= movie.title %> Poster" width="200">
+                <a href="/movies/<%= movie.title %>">
+                    <img src="<%= movie.img %>" alt="<%= movie.title %> Poster" width="200">
+                </a>
                 <h2 class="movie-title"><%= movie.title %></h2>
             </div>
             <div class="button-container">

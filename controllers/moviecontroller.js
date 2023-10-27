@@ -48,7 +48,7 @@ router.get("/update", async(req, res, next) => {
 
 
 //get movies by title "movie", { movie: movie[0] }
-router.get("/:id", async (req, res, next) => {
+router.get("/:title", async (req, res, next) => {
     try {
         console.log(req)
         const title = req.params.title;
@@ -63,6 +63,7 @@ router.get("/:id", async (req, res, next) => {
 
 //post new movies
 router.post("/newMovie", async(req, res, next) => {
+
     try {
         const createdMovie = await Movie.create({
             title: req.body.title,
@@ -107,5 +108,10 @@ router.delete("/:title", async(req, res, next) => {
         next(error)
     }
 })
+function isLoggedIn(req,res,next){
+    if (req.isAuthenticated() ) return next();
+    res.redirect('/auth/google');
+}
+
 
 module.exports = router

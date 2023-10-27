@@ -1,73 +1,49 @@
 const express = require("express");
-const router = express.Router()
-
-// Import User Model
+const router = express.Router();
 const User = require("../models/userModel");
-// get
-router.get("/:userName", async (req, res, next) => {
-  const userName = req.params.userName
-     try {
-      const user = await User.findOne({ userName: userName})
-      res.render("profile", { user: user })
-      // res.json(user)
-     } catch (error) {
-      next(error)
-     }
-})
+const passport = require('../db/passport'); // Import Passport for Google OAuth
 
-router.get("/newUser", async (req, res, next) => {
-  try {
-    res.render("/createaccount")
-  } catch (error) {
-    next(error)
+function index(req, res, next) {
+  console.log(req.query)
+  // Make the query object to use with Student.find based up
+  // the user has submitted the search form or now
+  let modelQuery = req.query.name ? {name: new RegExp(req.query.name, 'i')} : {};
+  // Default to sorting by name
+  let sortKey = req.query.sort || 'name';
+  User.find(modelQuery)
+  .sort(sortKey).exec(function(err, users) {
+    if (err) return next(err);
+    // Passing search values, name & sortKey, for use in the EJS
+    res.render('users/index', {
+      users,
+      user: req.user,
+      name: req.query.name,
+      sortKey
+    });
+  });
+}
+router.get('/users', index);
+// Google OAuth login route
+router.get('/auth/google', passport.authenticate(
+  'google',
+  { scope: ['profile', 'email'] }
+));
+
+
+
+// Google OAuth callback route
+router.get('/oauth2callback', passport.authenticate(
+  'google',
+  {
+    successRedirect: '/profile',
+    failureRedirect: '/'
   }
-})
+));
 
-// Register user 
-router.post("/", async (req, res, next) => {
-  try {
-    const createdUser = await User.create({
-        userName: req.body.userName,
-        email: req.body.email,
-        password: req.body.password,
-        unwatchedMovies: req.body.unwatchedMovies,
-        watchedMovies: req.body.watchedMovies
-    })
-    res.render("profile", { "user": createdUser })
-  } catch (error) {
-    next(error)
-  }
-})
+// OAuth logout route
+router.get('/logout', function(req, res){
+  req.logout();
+  res.redirect('/users');
+});
 
-// Update user
-router.put("/:userName", async (req, res, next) => {
-  try {
-    const filter = {
-      "userName": req.params.userName
-    }
-    const data = {
-      userName: req.body.userName,
-      email: req.body.email,
-      password: req.body.password,
-      unwatchedMovies: req.body.unwatchedMovies,
-      watchedMovies: req.body.watchedMovies
-    }
-    const updatedUser = await User.findOneAndUpdate(filter, data, {new: true})
-    res.redirect("/profile", {updatedUser})
-  } catch (error) {
-    next(error)
-  }
-})
-
-router.delete("/:userName", async (req, res, next) => {
-  try {
-    const userName = req.params.userName
-    await User.findOneAndDelete({ userName: userName })
-    res.redirect("/homepage")
-  } catch (error) {
-    next(error)
-  }
-})
-
-
-module.exports = router
+module.exports = router;

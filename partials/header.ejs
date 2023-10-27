@@ -1,3 +1,14 @@
-<header id="signin-link"><button><a href="/login">Sign in</a></button></header>
-<header id="profile-link"><a href="/profile">Profile</a></header>
 <a href="/"><img id="logo" src="../img/logo.png"></a>
+
+
+
+
+
+<% if (user) { %>
+
+<header id="profile-link"><button><a href="/login">Sign Out</a></button></header>
+
+    <% } else { %>
+        <header id="signin-link"><button><a href="/login">Sign in</a></button></header>
+    <% } %>
+
