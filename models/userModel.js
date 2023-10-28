@@ -1,9 +1,9 @@
-const mongoose = require(`../db/connection`)
+const mongoose = require(`../db/connection`);
+const Movie = require("./movieModel");
 
 const factSchema = new mongoose.Schema({
     text: String,
-    unwatchedMovies: [],
-    watchedMovies: []
+
   }, {
     timestamps: true
   });
@@ -12,7 +12,12 @@ const UserSchema = new mongoose.Schema({
     email: String,
     cohort: String,
     avatar: String,
-    facts: [factSchema],
+    unwatchedMovies: [{
+      type: mongoose.Schema.Types.ObjectId,
+    ref: "Movie"}],
+    // watchedMovies: [{
+    //   type: mongoose.Schema.Types.ObjectId,
+    // ref: "Movie"}],
     googleId: String
   }, {
     timestamps: true
