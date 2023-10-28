@@ -9,19 +9,25 @@ const Movie = require("../models/movieModel")
 
 router.get("/", async (req, res, next) => {
     try {
+        console.log(req.user);
         let movies
+        let userMovies = []
+
+
         if(req.query.title){
         const title = req.query.title
             movies = await Movie.find({ title: {$regex: title, $options: 'i'}})
         } else{
             movies = await Movie.find()
         }
-        // console.log(movies);
-        
-        res.render("movies", { movies })
 
-        // res.render("movies", { movies })
-        // res.json(movies)
+        if (req.user) {
+            userMovies = req.user.unwatchedMovies.map((movie) => movie._id.toString())
+            console.log(userMovies);
+        }
+
+        res.render("movies", { movies, userMovies })
+
     } catch (error) {
         next(error)
     }

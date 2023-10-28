@@ -8,11 +8,15 @@
                 <h2 class="movie-title"><%= movie.title %></h2>
             </div>
             <% if (user) { %>
-                <form method="POST" action="/user" class="add-movie-form">
-                    <input type="hidden" name="_method" value="PATCH">
-                    <input type="hidden" name="movieId" value="<%= movie._id %>">
+                <form  action="/users?_method=PUT" method="POST" class="add-movie-form">
+                    <input type="hidden" name="movieId" value="<%= movie.id %>">
+
                     <div class="button-container">
-                        <button type="submit" class="add-button" data-movie-title="<%= movie.title %>">Add to my list!</button>
+                        <% if (userMovies.includes(movie.id)) { %>
+                            <input disabled type="button" class="add-button" value="Added"/>
+                        <% } else { %> 
+                            <input type="submit" class="add-button" value="Add To My List"/>
+                        <% } %>
                     </div>
                 </form>
             <% } %>
