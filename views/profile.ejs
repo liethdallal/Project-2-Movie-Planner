@@ -4,7 +4,16 @@
 <% if (user) { %>
     <h1>Welcome <%= user.name %></h1>
     <h2>Unwatched Movies:</h2>
-    <h2>Watched Movies:</h2>
+    <% user.unwatchedMovies.forEach(movies => { %>
+<div class="movie-content">
+    <img src="<%= user.unwatchedMovies.img %>" alt="hello" width="200"
+    <h2 class="movie-title"><%= user.unwatchedMovies.title %></h2>  <!--ASK DAVID WHY THIS IS NOT GRABBING MOVIE IMAGE OR TITLE-->
+    <div class="button-container">
+        <button class="watched-button">Watched?</button>
+    </div>
+</div>
+<% }); %>
+    <!-- <h2>Watched Movies:</h2> -->
     <% } else { %>
         <p>Please sign in to save your data</p>
             <h1 id="homepage-intro">Welcome to our Movie Watchlist application! 

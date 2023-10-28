@@ -59,6 +59,16 @@ router.get("/:title", async (req, res, next) => {
     }
 });
 
+router.get("/:id", async (req, res, next) => {
+    try {
+        console.log(req)
+        const title = req.params.id;
+        const movie = await Movie.findOne({ id: id });
+    } catch (error) {
+        next(error);
+    }
+});
+
 
 
 //post new movies
