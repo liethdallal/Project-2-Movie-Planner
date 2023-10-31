@@ -1,15 +1,9 @@
-const express = require("express")
+const express = require('express')
 const router = express.Router()
-// const { displayAllMovies } = require("../controllers/indexcontroller")
+const Movie = require('../models/movieModel')
 
-const Movie = require("../models/movieModel")
-//get all movies
-
-// router.get("/", displayAllMovies)
-
-router.get("/", async (req, res, next) => {
+router.get('/', async (req, res, next) => {
     try {
-        console.log(req.user);
         let movies
         let userMovies = []
 
@@ -23,10 +17,9 @@ router.get("/", async (req, res, next) => {
 
         if (req.user) {
             userMovies = req.user.unwatchedMovies.map((movie) => movie._id.toString())
-            console.log(userMovies);
         }
 
-        res.render("movies", { movies, userMovies })
+        res.render('movies', { movies, userMovies })
 
     } catch (error) {
         next(error)
@@ -34,54 +27,50 @@ router.get("/", async (req, res, next) => {
 })
 
 //send new movie form
-router.get("/newMovie", async(req, res, next) => {
+router.get('/newMovie', async(req, res, next) => {
     try {
-        res.render("newMovieForm")
+        res.render('newMovieForm')
     } catch (error) {
         next(error)
     }
 })
-
 
 //send update movie form
-router.get("/update", async(req, res, next) => {
+router.get('/update', async(req, res, next) => {
     try {
-        res.render("movies")
+        res.render('movies')
     } catch (error) {
         next(error)
     }
 })
 
-
-//get movies by title "movie", { movie: movie[0] }
-router.get("/:title", async (req, res, next) => {
+//get movies by title 'movie', { movie: movie[0] }
+router.get('/:title', async (req, res, next) => {
     try {
-        const title = req.params.title;
-        const movie = await Movie.findOne({ title: title });
-        console.log(movie, "movie line 55")
+        const title = req.params.title
+        const movie = await Movie.findOne({ title: title })
         if (movie) {
-            res.render("example", { movie });
+            res.render('example', { movie })
         } else {
-            res.render("example", { movie: null }); 
+            res.render('example', { movie: null }) 
         }
     } catch (error) {
-        next(error);
+        next(error)
     }
-});
+})
 
-router.get("/add", async (req, res, next) => {
+router.get('/add', async (req, res, next) => {
     try {
-        // console.log(req)
-        const id = req.params.id;
-        const movie = await Movie.find({ id: id });
-        res.redirect("/profile")
+        const id = req.params.id
+        const movie = await Movie.find({ id: id })
+        res.redirect('/profile')
     } catch (error) {
-        next(error);
+        next(error)
     }
-});
+})
 
 //post new movies
-router.post("/newMovie", async(req, res, next) => {
+router.post('/newMovie', async(req, res, next) => {
 
     try {
         const createdMovie = await Movie.create({
@@ -90,18 +79,21 @@ router.post("/newMovie", async(req, res, next) => {
             watched: req.body.watched,
             rating: req.body.rating
         })
-        res.redirect("/movies")
+        res.redirect('/movies')
         // res.json(createdMovie)
     } catch (error) {
         next(error)
     }
 })
 
+
+
+
 //update movie by title
-router.put("/:title", async(req, res, next) => {
+router.put('/:title', async(req, res, next) => {
     try {
         const filter = {
-            "title": req.params.title
+            'title': req.params.title
         }
         const data = {
             title: req.body.title, //THIS line of code is where the error is spitting
@@ -110,7 +102,7 @@ router.put("/:title", async(req, res, next) => {
             rating: req.body.rating
         }
         const updatedMovie = await Movie.findOneAndUpdate(filter, data, { new: true })
-        // res.redirect("/:title", {updatedMovie})
+        // res.redirect('/:title', {updatedMovie})
         res.json(updatedMovie)
     } catch (error) {
         next(error)
@@ -118,18 +110,18 @@ router.put("/:title", async(req, res, next) => {
 })
 
 //delete movies
-router.delete("/:title", async(req, res, next) => {
+router.delete('/:title', async(req, res, next) => {
     try {
         const title = req.params.title
         await Movie.findOneAndDelete({ title: title })
-        res.redirect("/movies")
+        res.redirect('/movies')
     } catch (error) {
         next(error)
     }
 })
 function isLoggedIn(req,res,next){
-    if (req.isAuthenticated() ) return next();
-    res.redirect('/auth/google');
+    if (req.isAuthenticated() ) return next()
+    res.redirect('/auth/google')
 }
 
 

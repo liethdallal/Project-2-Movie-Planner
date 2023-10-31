@@ -5,28 +5,24 @@ const UserSchema = new mongoose.Schema({
     email: String,
     unwatchedMovies: [{ 
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Movie"}],
-    // watchedMovies: [{
-    //   type: mongoose.Schema.Types.ObjectId,
-    //   ref: "Movie"
-    // }],
+      ref: 'Movie'}],
     googleId: String
   }, {
     timestamps: true
-  });
+  })
 
 //prehook
-UserSchema.pre("findOne", function(next){
-  this.populate("unwatchedMovies")
+UserSchema.pre('findOne', function(next){
+  this.populate('unwatchedMovies')
   next()
 })
 
-UserSchema.pre("find", function(next){
-  this.populate("unwatchedMovies")
+UserSchema.pre('find', function(next){
+  this.populate('unwatchedMovies')
   next()
 })
 
-const User = mongoose.model("User", UserSchema)
+const User = mongoose.model('User', UserSchema)
 
 module.exports = User
 

@@ -1,7 +1,7 @@
 # Project-2-Movie-Planner
 
 # Project Description 
-Our Movie Review and Watchlist Application is a web-based platform developed using Express, MongoDB, Mongoose, Node, EJS, and JavaScript. It provides users with the ability to create an account, save their data, add movie reviews, maintain a watchlist, and contribute custom movie information. This application caters to movie enthusiasts who want a centralized place to manage their movie-related activities.
+Our Movie Review and Watchlist Application is a web-based platform developed using Express, MongoDB, Mongoose, Node, EJS, and JavaScript. It provides users with the ability to sign in with their google account, save their data, maintain a watchlist, and contribute custom movie information.
 
 # Picture of home page 
 
@@ -10,42 +10,45 @@ Our Movie Review and Watchlist Application is a web-based platform developed usi
 # User Stories 
 -As the user I would like to create an account to keep my data saved with all my changes
 
--As the user I want to be able to add a review for movies I have watched 
+-As the user I want to be able to know if the movie i added has been added already to my watchlist 
 
 -As a user I want to be able to add a movies I would like to watch
 
--As the user I want to be able to add my own movie title and author
+-As the user I want to be able to add my own movie title and image for the movie 
 
--in case the movie I watched or want to watch is not present in the database 
+-I want to be able to search through the movies with a search bar
 
 # MVP + Stretch Goals 
 ### MVP Goals
-A home page with full access to a list of movies the user added to his to-watch list and movies he has already watched
--For the movies watched a rating range that the user assigned that movie out of 5
--A button to add movies that are not included in the application
-A page to rate the movie out of 5 stars
--A method to catch errors through an error page
+-A home page with full access to a list of movies the user added to his to-watch list
+
+-A button to add movies that are not included in the application's database
+
+-A search bar to search for individual movies from the database 
+
+-No errors or user manipulation 
 
 
 ### Stretch Goals
--Each movie (that has a review) has a comment about it (if the user wants to add relevant information about which type of people would enjoy the movie)
+-A review out of 5 for each movie for each personal user 
+
 -A filter system for different genres of movies
--a sign-in page that also has links to a sign-up page as well in case the user does not have an account
+
+-A sign-in method for the user to be able to save his data 
 
 ### List of Mongoose models and their properties
 -A movie model that holds properties: 
   title: {type: String, required: true, unique: true},
-    img: {type: String, required: true},
-    rating: {
-        type: Number,
-        min: 0,
-        max: 5,
-        required: true
-      }
+  img: {type: String, required: true},
+   
 -A user model that holds properties: 
- userName: {type: String, require: true},
-    email: {type: String, require: true, unique: true}, 
-    password: {type: String, require: true}
+    name: String,
+    email: String,
+    unwatchedMovies: 
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Movie"
+    googleId: String
+    timestamps: true
 
 ### List of Routes
 For the user:
