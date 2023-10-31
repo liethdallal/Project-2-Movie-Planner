@@ -7,12 +7,12 @@
             <h2>Unwatched Movies</h2>
             <% user.unwatchedMovies.forEach(movie => { %>
               <div class="movie-content">
-                <img src="<%= movie.img %>" alt="<%= movie.title %> Poster" width="200">
-                <h2 class="movie-title"><%= movie.title %></h2>
-                <form action="/profile/remove-movie?_method_PUT" method="POST">
-                  <input type="hidden" name="movieId" value="<%= movie._id %>">
-                  <button type="submit" class="remove-button">Remove from List</button>
-                </form>
+                    <img src="<%= movie.img %>" alt="<%= movie.title %> Poster" width="200">
+                    <h2 class="movie-title"><%= movie.title %></h2>
+                    <form action="/users/remove-movie?_method=PUT" method="POST">
+                      <input type="hidden" name="movieId" value="<%= movie._id %>">
+                      <button type="submit" class="remove-button">Remove from List</button>
+                    </form>
               </div>
     <% }); %>
 <% } else { %>

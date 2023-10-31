@@ -52,12 +52,13 @@ router.put('/', async (req, res, next) => {
     const user = await User.findOne({_id: req.user._id})
     const movieId = req.body.movieId
     const movie = await Movie.findOne({ _id: movieId })
+
     if (!movie) {
       return res.status(404).json({ error: 'Movie not found' })
     }
     user.unwatchedMovies.push(movie.id)
     await user.save()
-    res.redirect(`/profile`)
+    res.redirect(`/movies`)
   } catch (error) {
     console.error(error)
     res.status(500).json({ error: 'Internal Server Error' })
@@ -65,30 +66,29 @@ router.put('/', async (req, res, next) => {
 })
 
 
-router.put("/profile/remove-movie", async (req, res, next) => {
+router.put("/remove-movie", async (req, res, next) => {
   try {
     if (!req.isAuthenticated()) {
       return res.status(401).json({ error: 'Unauthorized' });
     }
-
-    const user = await User.findOne({ _id: req.user._id });
-    console.log(user)
+    // console.log(req);
+    const userId = req.user._id
     const movieId = req.body.movieId;
-    console.log(movieId)
-    // Remove the movie from the user's unwatchedMovies list
-    user.unwatchedMovies = user.unwatchedMovies.filter((id) => id !== movieId);
+    // console.log(movieId)
 
-    await user.save();
+    const user = await User.findOne({ _id: userId });
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+
+    user.unwatchedMovies.pull(movieId);
+      await user.save();
     res.redirect(`/profile`);
+    
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Internal Server Error' });
   }
 });
-
-
-
-
-
 
 module.exports = router

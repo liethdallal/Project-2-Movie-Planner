@@ -52,19 +52,17 @@ Our Movie Review and Watchlist Application is a web-based platform developed usi
 
 ### List of Routes
 For the user:
-user
 get
 getbyId
 post
 put(update)
-delete
+
 
 For the movies: 
 get
 getbyId
 post
-put(update)
-delete
+
 
 # Wireframe
 ![Alt text](project2_wireframe.png)
