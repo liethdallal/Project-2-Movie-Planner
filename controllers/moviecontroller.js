@@ -80,14 +80,10 @@ router.post('/newMovie', async(req, res, next) => {
             rating: req.body.rating
         })
         res.redirect('/movies')
-        // res.json(createdMovie)
     } catch (error) {
         next(error)
     }
 })
-
-
-
 
 //update movie by title
 router.put('/:title', async(req, res, next) => {
@@ -96,13 +92,12 @@ router.put('/:title', async(req, res, next) => {
             'title': req.params.title
         }
         const data = {
-            title: req.body.title, //THIS line of code is where the error is spitting
+            title: req.body.title, 
             img: req.body.img,
             watched: req.body.watched,
             rating: req.body.rating
         }
         const updatedMovie = await Movie.findOneAndUpdate(filter, data, { new: true })
-        // res.redirect('/:title', {updatedMovie})
         res.json(updatedMovie)
     } catch (error) {
         next(error)

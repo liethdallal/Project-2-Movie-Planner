@@ -21,29 +21,6 @@ function index(req, res, next) {
 
 router.get('/users', index)
 
-// Google OAuth login route
-router.get('/auth/google', passport.authenticate(
-  'google',
-  { scope: ['profile', 'email'] }
-))
-
-// Google OAuth callback route
-router.get('/oauth2callback', passport.authenticate(
-  'google',
-  {
-    successRedirect: '/profile',
-    failureRedirect: '/'
-  }
-))
-
-// OAuth logout route
-router.get('/logout', function(req, res){
-  req.logout()
-  res.redirect('/users')
-})
-
-
-
 router.put('/', async (req, res, next) => {
   try {
     if (!req.isAuthenticated()) {
@@ -66,29 +43,26 @@ router.put('/', async (req, res, next) => {
 })
 
 
-router.put("/remove-movie", async (req, res, next) => {
+router.put('/remove-movie', async (req, res, next) => {
   try {
     if (!req.isAuthenticated()) {
-      return res.status(401).json({ error: 'Unauthorized' });
+      return res.status(401).json({ error: 'Unauthorized' })
     }
-    // console.log(req);
     const userId = req.user._id
-    const movieId = req.body.movieId;
-    // console.log(movieId)
+    const movieId = req.body.movieId
 
-    const user = await User.findOne({ _id: userId });
+    const user = await User.findOne({ _id: userId })
     if (!user) {
-      return res.status(404).json({ error: 'User not found' });
+      return res.status(404).json({ error: 'User not found' })
     }
 
-    user.unwatchedMovies.pull(movieId);
-      await user.save();
-    res.redirect(`/profile`);
+    user.unwatchedMovies.pull(movieId)
+      await user.save()
+    res.redirect(`/profile`)
     
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'Internal Server Error' });
+    res.status(500).json({ error: 'Internal Server Error' })
   }
-});
+})
 
 module.exports = router

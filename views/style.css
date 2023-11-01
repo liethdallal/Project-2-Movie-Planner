@@ -212,7 +212,6 @@ border: none;
 }
 #seeall{
   font-size: 30px;
-  margin-top: 80px;
 }
 #please{
   font-size: 30px;
@@ -225,10 +224,9 @@ border: none;
 #welcome{
   text-align: center;
 }
-#listofmovies{
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  justify-content: flex-start;
-  margin: 50px;
+#movieshr{
+  border: 5px solid black; 
+  background-color: black;
+  height: 0.5px;
+  
 }
