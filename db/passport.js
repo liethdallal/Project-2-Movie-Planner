@@ -1,6 +1,6 @@
-const passport = require('passport')
-const GoogleStrategy = require('passport-google-oauth20').Strategy
-const User = require('../models/userModel')
+const passport = require('passport');
+const GoogleStrategy = require('passport-google-oauth20').Strategy;
+const User = require('../models/userModel');
 
 passport.use(
   new GoogleStrategy(
@@ -11,41 +11,43 @@ passport.use(
     },
     async (accessToken, refreshToken, profile, done) => {
       try {
-        let user = await User.findOne({ googleId: profile.id })
+        let user = await User.findOne({ googleId: profile.id });
 
         if (user) {
-          return done(null, user)
+          return done(null, user);
         } else {
           const newUser = new User({
             name: profile.displayName,
             email: profile.emails[0].value,
             googleId: profile.id,
-          })
-          await newUser.save()
+          });
+          await newUser.save();
 
-          const userID = req.body.user_id
-          return done(null, newUser)
+          // Do not use 'req.body.user_id' here; obtain the user_id from the context where authentication is initiated
+          // Example: const userID = req.body.user_id;
+
+          return done(null, newUser);
         }
       } catch (err) {
-        return done(err)
+        return done(err);
       }
     }
   )
-)
+);
 
 passport.serializeUser(function (user, done) {
-  done(null, user.id)
-})
+  done(null, user.id);
+});
 
 passport.deserializeUser(async function (id, done) {
   try {
-    const user = await User.findById(id)
-    done(null, user)
+    const user = await User.findById(id);
+    done(null, user);
   } catch (err) {
-    done(err)
+    done(err);
   }
-})
+});
 
-module.exports = passport
+module.exports = passport;
 
           
