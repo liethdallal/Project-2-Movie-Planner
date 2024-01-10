@@ -75,7 +75,8 @@ app.use(function (req, res) {
   res.status(404).render('error.ejs')
 })
 
-app.listen(8000, () => {
-  console.log('Listening! on port 8000 🔥')
+const PORT = process.env.PORT 
+app.listen(PORT, () => {
+  console.log('Listening!🔥')
 })
 
