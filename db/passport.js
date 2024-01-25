@@ -22,10 +22,6 @@ passport.use(
             googleId: profile.id,
           });
           await newUser.save();
-
-          // Do not use 'req.body.user_id' here; obtain the user_id from the context where authentication is initiated
-          // Example: const userID = req.body.user_id;
-
           return done(null, newUser);
         }
       } catch (err) {

@@ -1,27 +1,30 @@
-const router = require('express').Router()
 const passport = require('passport')
 
-router.get('/', function(req, res) {
+function displayProfilePage(req, res) {
   res.redirect('/profile')
-})
+}
 
-router.get('/auth/google', passport.authenticate(
-  'google',
-  { scope: ['profile', 'email'] }
-))
+function login(req,res){
+  passport.authenticate(
+    'google',
+    { scope: ['profile', 'email'] }
+  )(req,res)
+} 
 
 
 // Google OAuth callback route
-router.get('/oauth2callback', passport.authenticate(
-  'google',
-  {
-    successRedirect : '/profile',
-    failureRedirect : '/login'
-  }
-))
+function callBack(req,res){
+  passport.authenticate(
+    'google',
+    {
+      successRedirect : '/profile',
+      failureRedirect : '/profile'
+    }
+  )(req, res)
+}
 
 // OAuth logout route
-router.get('/logout', function(req, res) {
+function logout(req, res) {
     req.logout(function(err) {
       if (err) {
         res.redirect('/error')
@@ -29,6 +32,15 @@ router.get('/logout', function(req, res) {
         res.redirect('/')
       }
     })
-  })
+  }
 
-module.exports = router
+function renderProfilePage(req, res){
+    res.render('profile.ejs')
+  }
+
+  function displayErrorPage(req,res) {
+    res.render('error')
+  }
+  
+module.exports = {displayProfilePage, renderProfilePage, login, callBack, logout, displayErrorPage}
+

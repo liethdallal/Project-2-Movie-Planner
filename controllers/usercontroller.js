@@ -19,50 +19,34 @@ function index(req, res, next) {
   })
 }
 
-router.get('/users', index)
 
-router.put('/', async (req, res, next) => {
+async function addMovieToList(req, res, next) {
   try {
-    if (!req.isAuthenticated()) {
-      return res.status(401).json({ error: 'Unauthorized' })
-    }
     const user = await User.findOne({_id: req.user._id})
     const movieId = req.body.movieId
     const movie = await Movie.findOne({ _id: movieId })
-
-    if (!movie) {
-      return res.status(404).json({ error: 'Movie not found' })
-    }
     user.unwatchedMovies.push(movie.id)
     await user.save()
     res.redirect(`/movies`)
+
   } catch (error) {
-    console.error(error)
-    res.status(500).json({ error: 'Internal Server Error' })
+  res.render('error')
   }
-})
+}
 
 
-router.put('/remove-movie', async (req, res, next) => {
+ async function removeMovieFromList (req, res, next) {
   try {
-    if (!req.isAuthenticated()) {
-      return res.status(401).json({ error: 'Unauthorized' })
-    }
     const userId = req.user._id
     const movieId = req.body.movieId
-
     const user = await User.findOne({ _id: userId })
-    if (!user) {
-      return res.status(404).json({ error: 'User not found' })
-    }
-
     user.unwatchedMovies.pull(movieId)
-      await user.save()
+    await user.save()
     res.redirect(`/profile`)
     
   } catch (error) {
-    res.status(500).json({ error: 'Internal Server Error' })
+    res.render('error')
   }
-})
+}
 
-module.exports = router
+module.exports = {index, addMovieToList, removeMovieFromList}
