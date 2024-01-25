@@ -5,7 +5,7 @@ Our Movie Review and Watchlist Application is a web-based platform developed usi
 
 # Picture of home page 
 
-![Homepage pic](./Screenshot%202023-10-31%20at%208.22.46 PM.png)
+![Homepage pic](public/img/Screenshot%202023-10-31%20at%208.22.46 PM.png)
 
 # User Stories 
 -As the user I would like to create an account to keep my data saved with all my changes
@@ -65,7 +65,8 @@ post
 
 
 # Wireframe
-![Wireframe pic](project2_wireframe.png)
+![Wireframe pic](public/img/project2_wireframe.png)
+
 
 
 
