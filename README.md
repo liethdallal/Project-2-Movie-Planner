@@ -1,11 +1,9 @@
 # Project-2-Movie-Planner
+<img src="./public/img/movie-planner.png">
+
 
 # Project Description 
 Our Movie Review and Watchlist Application is a web-based platform developed using Express, MongoDB, Mongoose, Node, EJS, and JavaScript. It provides users with the ability to sign in with their google account, save their data, maintain a watchlist, and contribute custom movie information.
-
-# Picture of home page 
-
-![Homepage pic](public/img/Screenshot%202023-10-31%20at%208.22.46 PM.png)
 
 # User Stories 
 -As the user I would like to create an account to keep my data saved with all my changes

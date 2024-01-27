@@ -3,6 +3,11 @@
 </div>
 <h1 id="welcome">All Movies</h1>
 <hr id="movieshr">
+<div class='new-movie'>
+    <h3>Don't see the movie you're looking for? Add it!</h3>
+    <a id='newmovieLink' href='/movies/newMovie'><button id='newMovie'>ADD</button></a>
+</div>
+
 <div class='movies-grid'>
     <% movies.forEach(movie => { %>
         <div class='movie-card'>
@@ -25,8 +30,4 @@
             <% } %>
         </div>
     <% }); %>
-</div>
-<div class='new-movie'>
-    <h3>Don't see the movie you're looking for? Add it!</h3>
-    <a id='newmovieLink' href='/movies/newMovie'><button id='newMovie'>ADD</button></a>
 </div>
